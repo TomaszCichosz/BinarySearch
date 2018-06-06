@@ -4,6 +4,8 @@ import java.util.List;
 
 public class BinarySearch {
 
+    public static final int RESULT_NOT_FOUND = -1;
+
     public static int search(List<Integer> list, int searchedValue) {
         int listSize = list.size();
         int leftIndex = 0;
@@ -12,7 +14,7 @@ public class BinarySearch {
         while (true) {
             printList(list, leftIndex, rightIndex);
             if (leftIndex > rightIndex) {
-                return -1;
+                return RESULT_NOT_FOUND;
             } else {
                 separatorIndex = (leftIndex + rightIndex) / 2;
                 if (list.get(separatorIndex) == searchedValue) {

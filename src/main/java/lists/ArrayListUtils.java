@@ -20,24 +20,7 @@ public class ArrayListUtils {
         System.out.println("List size:");
         int size = ScannerUtils.getInteger();
         System.out.println("Values:");
-        for (int i = 0; i < size; i++) {
-            list.add(ScannerUtils.getInteger());
-        }
-        return list;
-    }
-
-    public static List<Integer> listRandomCreator(List<Integer> list) {
-        list.clear();
-        System.out.println("List size:");
-        int size = ScannerUtils.getInteger();
-        System.out.println("Minimal value:");
-        int min = ScannerUtils.getInteger();
-        System.out.println("Maximal value:");
-        int max = ScannerUtils.getInteger();
-        Random generator = new Random();
-        for (int i = 0; i < size; i++) {
-            list.add(generator.nextInt((max - min) + 1) + min);
-        }
+        extendList(list, size);
         return list;
     }
 
@@ -45,24 +28,40 @@ public class ArrayListUtils {
         System.out.println("Number of values you want to add:");
         int numberOfValues = ScannerUtils.getInteger();
         System.out.println("Values:");
-        for (int i = 0; i < numberOfValues; i++) {
+        extendList(list, numberOfValues);
+        return list;
+    }
+
+    private static void extendList(List<Integer> list, int elementCount) {
+        for (int i = 0; i < elementCount; i++) {
             list.add(ScannerUtils.getInteger());
         }
+    }
+
+    public static List<Integer> listRandomCreator(List<Integer> list) {
+        list.clear();
+        System.out.println("List size:");
+        int size = ScannerUtils.getInteger();
+        randomExtendList(list, size);
         return list;
     }
 
     public static List<Integer> listRandomExtender(List<Integer> list) {
         System.out.println("Number of random values you want to add:");
         int numberOfValues = ScannerUtils.getInteger();
+        randomExtendList(list, numberOfValues);
+        return list;
+    }
+
+    private static void randomExtendList(List<Integer> list, int elementCount) {
         System.out.println("Minimal value:");
         int min = ScannerUtils.getInteger();
         System.out.println("Maximal value:");
         int max = ScannerUtils.getInteger();
         Random generator = new Random();
-        for (int i = 0; i < numberOfValues; i++) {
+        for (int i = 0; i < elementCount; i++) {
             list.add(generator.nextInt((max - min) + 1) + min);
         }
-        return list;
     }
 
 }

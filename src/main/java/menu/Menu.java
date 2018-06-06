@@ -23,7 +23,7 @@ public class Menu {
         boolean exit = false;
 
         while (!exit) {
-            MenuUtils.mainMenuInformation();
+            mainMenuInformation();
             int decision = ScannerUtils.getInteger();
             switch (decision) {
                 case CREATE_OPTION:
@@ -42,21 +42,41 @@ public class Menu {
                     ArrayListUtils.printList(list);
                     break;
                 case SEARCH_OPTION:
-                    QuickSort.sort(list, 0, list.size() - 1);
-                    System.out.println("Searched value:");
-                    int result = BinarySearch.search(list, ScannerUtils.getInteger());
-                    if (result == -1) {
-                        System.out.println("Value not found.");
-                    } else System.out.println("Value found at index: " + result);
+                    searchOption(list);
                     break;
                 case EXIT_OPTION:
                     exit = true;
                     break;
                 default:
-                    MenuUtils.errorMessage();
+                    errorMessage();
                     break;
             }
         }
+    }
+
+    private static void searchOption(List<Integer> list) {
+        QuickSort.sort(list, 0, list.size() - 1);
+        System.out.println("Searched value:");
+        int result = BinarySearch.search(list, ScannerUtils.getInteger());
+        if (result == BinarySearch.RESULT_NOT_FOUND) {
+            System.out.println("Value not found.");
+        } else {
+            System.out.println("Value found at index: " + result);
+        }
+    }
+
+    private static void errorMessage() {
+        System.out.println("Wrong command!");
+    }
+
+    private static void mainMenuInformation() {
+        System.out.println("1: Create list of integers");
+        System.out.println("2: Create list of integers using random values");
+        System.out.println("3: Extend list of integers");
+        System.out.println("4: Extend list of integers using random values");
+        System.out.println("5: Print list of integers");
+        System.out.println("6: Search list of integers");
+        System.out.println("0: Exit");
     }
 
 }

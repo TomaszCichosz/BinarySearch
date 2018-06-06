@@ -4,9 +4,10 @@ import java.util.List;
 
 public class QuickSort {
 
-    public static void sort(List<Integer> list, int startingLeftIndex, int startingRightIndex) { //zaczynamy z list,0,list.size()-1
-        int leftIndex = startingLeftIndex;
-        int rightIndex = startingRightIndex;
+
+    public static void sort(List<Integer> list, int startIndex, int endIndex) {
+        int leftIndex = startIndex;
+        int rightIndex = endIndex;
         int separator = list.get((rightIndex + leftIndex) / 2);
         do {
             while (list.get(leftIndex) < separator)
@@ -19,18 +20,16 @@ public class QuickSort {
                 rightIndex--;
             }
         } while (leftIndex <= rightIndex);
-        if (startingLeftIndex < rightIndex)
-            sort(list, startingLeftIndex, rightIndex);
-        if (leftIndex < startingRightIndex)
-            sort(list, leftIndex, startingRightIndex);
+        if (startIndex < rightIndex)
+            sort(list, startIndex, rightIndex);
+        if (leftIndex < endIndex)
+            sort(list, leftIndex, endIndex);
     }
 
     private static void swap(List<Integer> list, int leftIndex, int rightIndex) {
         int temp = list.get(rightIndex);
-        list.remove(rightIndex);
-        list.add(rightIndex, list.get(leftIndex));
-        list.remove(leftIndex);
-        list.add(leftIndex, temp);
+        list.set(rightIndex, list.get(leftIndex));
+        list.set(leftIndex, temp);
     }
 
 }
